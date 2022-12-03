@@ -1,3 +1,5 @@
+from collections import Counter
+
 score_values = '_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 score = 0
 
@@ -10,3 +12,6 @@ for i in range(0,len(all_packs),3):
             score = score + score_values.find(item)
             break
 print(score)
+
+#And, as an unreadable list comprehension:
+print(sum([score_values.find(list(Counter(all_packs[i]) & Counter(all_packs[i+1]) & Counter(all_packs[i+2]))[0]) for i in range(0,len(all_packs),3)]))
